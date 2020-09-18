@@ -47,6 +47,10 @@ h1 {
     float:left;
 }
 
+.module input[type=checkbox] {
+    margin:0px 0px 0px -140px;
+}
+
 #header {
     background:#4dcc43;
     overflow:auto;
@@ -190,10 +194,6 @@ input[type=submit]:hover, a.button:hover {
     background:#3fad37;
 }
 
-ul#course-modules {
-    list-style:none;
-    overflow:auto;
-}
 
 ul#course-modules textarea {
     width:600px;
