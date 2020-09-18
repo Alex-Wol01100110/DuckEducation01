@@ -1,0 +1,41 @@
+{% load static %}
+{% load students %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}Educa{% endblock title %}</title>
+  <link href="{% static 'css/base.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div id="header">
+    <a href="/" class="logo">Educa</a>
+    <ul class="menu">
+      {% if request.user.is_authenticated %}
+        <li><a href="{% url 'logout' %}">Sign out</a></li>
+        <p>Welcome {{ request.user.get_username }}</p>
+        <a href="{% url 'students:student_course_list' %}">My courses</a>
+        {% if request.user|has_group:"Instructors" %}
+          <p><a href="{% url 'courses:manage_course_list' %}">
+          Manage courses</a></p>
+        {% endif %}
+      {% else %}
+        <li><a href="{% url 'login' %}">Sign in</a></li>
+      {% endif %}
+    </ul>
+  </div>
+  <div id="content">
+    {% block content %}
+    {% endblock content %}
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      {% block domready %}
+      {% endblock domready %}
+    });
+  </script>
+</body>
+</html>
