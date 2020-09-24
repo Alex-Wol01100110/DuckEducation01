@@ -13,17 +13,27 @@
     <ul class="menu">
       {% if request.user.is_authenticated %}
         <li><a href="{% url 'logout' %}">Sign out</a></li>
-        <p>Welcome {{ request.user.get_username }}</p>
-        <a href="{% url 'students:student_course_list' %}">My courses</a>
+        <!--
+        <li><p>
+          <div id="auth" >Welcome {{ request.user.get_username }}</div>
+        </p></li>
+        -->
+        <li><a href="{% url 'students:student_course_list' %}">My courses</a></li>
         {% if request.user|has_group:"Instructors" %}
-          <p><a href="{% url 'courses:manage_course_list' %}">
-          Manage courses</a></p>
+          <li><a href="{% url 'courses:manage_course_list' %}">
+          Manage courses</a></li>
         {% endif %}
       {% else %}
         <li><a href="{% url 'login' %}">Sign in</a></li>
       {% endif %}
     </ul>
+    <div id="auth">
+      {% if request.user.is_authenticated %}
+        <p>Welcome {{ request.user.get_username }}</p>
+      {% endif %}
+    </div>
   </div>
+
   <div id="content">
     {% block content %}
     {% endblock content %}
