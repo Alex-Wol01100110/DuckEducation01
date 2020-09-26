@@ -1,9 +1,11 @@
 from django.urls import path
 from . import views
+from .views import CourseListView
 
 app_name = 'courses'
 
 urlpatterns = [
+    path('list/', CourseListView.as_view(), name='course_list'),
     path('mine/', 
          views.ManageCourseListView.as_view(),
          name='manage_course_list'),

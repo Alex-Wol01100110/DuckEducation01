@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}
+  <p>Welcome</p>
+{% endblock title %}
+
+{% block content %}
+  <p>Hello</p>
+  <a href="{% url 'index' %}">Check courses</a>
+  <a href="{% url 'courses:course_list' %}">Course list</a>
+{% endblock content %}

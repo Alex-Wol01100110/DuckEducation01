@@ -18,6 +18,10 @@ from students.forms import CourseEnrollForm
 
 from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 
+def index(request):
+    """Home page."""
+    return render(request, 'index.html')
+
 class OwnerMixin(object):
     def get_queryset(self):
         qs = super().get_queryset()

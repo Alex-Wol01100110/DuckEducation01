@@ -34,6 +34,7 @@ h1 {
     padding:10px 20px;
     border-style:solid;
     float: left;
+
 }
 
 .module h3 {
@@ -219,12 +220,13 @@ h1 {
 
 .contents {
     width:20%;
+    height: 100%;
     padding:10px;
     float:left;
     background:#333;
     color: #fff;
     font-family:'Roboto', sans-serif;
-    clear: both;
+    clear: right;
 }
 
 .contents ul {

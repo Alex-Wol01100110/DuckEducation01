@@ -18,7 +18,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from courses.views import CourseListView
+from courses import views
+#from courses.views import CourseListView
 
 urlpatterns = [
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
@@ -28,7 +29,8 @@ urlpatterns = [
     path('students/', include('students.urls')),
     path('api/', include('courses.api.urls', namespace='api')),
     path('chat/', include('chat.urls', namespace='chat')),
-    path('', CourseListView.as_view(), name='course_list'),
+    # path('', CourseListView.as_view(), name='course_list'),
+    path('', views.index, name='index')
 ]
 
 if settings.DEBUG:
