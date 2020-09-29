@@ -5,10 +5,12 @@ body {
     font-family:'Roboto', sans-serif;
     font-weight:400;
     color:#333;
+    background: url("/static/img/01.jpg") 50% 0 no-repeat fixed;
+    background-size: 100% 100%;
 }
 
 a {
-    color:#3fad37;
+    color: #008000;
     text-decoration:none;
 }
 
@@ -23,7 +25,6 @@ h1, h2, h3, h4, h5, h6 {
 
 h1 {
     background:#efefef;
-    width:100%;
     overflow:auto;
     padding:20px 0 20px 40px;
     margin:0;
@@ -34,7 +35,6 @@ h1 {
     padding:10px 20px;
     border-style:solid;
     float: left;
-
 }
 
 .module h3 {
@@ -169,19 +169,20 @@ h1 {
 
 #header .logo {
     margin: 0em 0em 0em 1em;
-    text-decoration:none;
-    font-family:'Roboto', sans-serif;
-    font-weight:300;
-    text-transform:uppercase;
-    font-size:24px;
-    color:#000000;
-    float:left;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 24px;
+    color: #000000;
+    float: left;
 }
 
 #header .menu {
+    display: inline;
 	list-style:none;
     margin: 0 auto;
-    width: 25em;
+    width: auto;
 } 
 
 #header .menu li {
@@ -216,6 +217,7 @@ h1 {
 #header #auth {
     float: right;
     padding-right: 1em;
+    width: 25;
 }
 
 .contents {
@@ -287,6 +289,24 @@ form p {
 .errorlist {
     color:#ae2c2c;
     margin:0;
+}
+
+.greeting {
+    margin: 10% auto;
+    border: 15px solid green;
+    border-style: solid;
+    padding: 50px;
+    width: 60%;
+    height: auto;
+    display: flex;
+    text-align: center;
+
+}
+
+.greeting p {
+    margin: 0;
+    width: 100%;
+    font-size: 35px;
 }
 
 label {
@@ -397,7 +417,7 @@ ul#course-modules li:hover {
 #module-contents input[type=submit] {
     color:#3fad37;
     background:none;
-
+    margin:-20px 0 0;
     padding:0;
     float:left;
     text-transform:none;
