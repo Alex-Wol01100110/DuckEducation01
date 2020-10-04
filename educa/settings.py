@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '#mj!6*zn%n-!ty97m6j%!8p2x6owq9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dukeducation.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
