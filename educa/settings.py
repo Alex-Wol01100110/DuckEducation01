@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'memcache_status',
     'rest_framework',
     'channels',
+    'storages',
 
     # Default apps.
     'django.contrib.admin',
@@ -52,7 +53,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -129,21 +130,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_URL = '/static/'
-
-# Extra places for collectstatic to find static files.
-#STATICFILES_DIRS = (
-#    os.path.join(BASE_DIR, 'static'),
-#)
-
 from django.urls import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('students:student_course_list')
 
 # Base URL to serve uploaded media files and
 # local path where the files are located
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
 CACHES = {
     'default': {
@@ -182,4 +173,33 @@ elif os.environ.get('DEBUG') == 'FALSE':
     DEBUG = False
 
 # Simplified static file serving.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+USE_S3 = True
+if os.environ.get('USE_S3') == 'TRUE':
+    USE_S3 = True
+elif os.environ.get('USE_S3') == 'FALSE':
+    USE_S3 = False
+if USE_S3 == True:
+    # aws settings
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+    AWS_DEFAULT_ACL = None
+    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    # s3 static settings
+    STATIC_LOCATION = 'staticfiles'
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATIC_LOCATION}/'
+    STATICFILES_STORAGE = 'educa.storage_backends.StaticStorage'
+    # s3 public media settings
+    PUBLIC_MEDIA_LOCATION = 'media'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
+    DEFAULT_FILE_STORAGE = 'educa.storage_backends.PublicMediaStorage'
+else:
+    STATIC_URL = '/staticfiles/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    MEDIA_URL = '/mediafiles/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
