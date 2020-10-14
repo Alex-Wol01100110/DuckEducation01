@@ -261,6 +261,7 @@ input, select, textarea {
     float:left;
     clear:both;
     width:300px;
+    max-width: 300px;
 }
 
 textarea {
@@ -371,7 +372,7 @@ ul#course-modules li:hover {
 }
 
 .helptext {
-    color:#ccc;
+    color:#666666;
     padding-left:20px;
 }
 

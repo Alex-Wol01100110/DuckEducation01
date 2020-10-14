@@ -20,4 +20,11 @@ urlpatterns = [
     path('course/<pk>/<module_id>/',
          cache_page(60 * 15)(views.StudentCourseDetailView.as_view()),
          name='student_course_detail_module'),
+
+    path('signup/', 
+         views.SignUpView.as_view(), 
+         name='signup'),
+    path('activate/<uidb64>/<token>/', 
+         views.ActivateAccount.as_view(), 
+         name='activate'),
 ]

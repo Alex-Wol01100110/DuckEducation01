@@ -175,7 +175,7 @@ elif os.environ.get('DEBUG') == 'FALSE':
 # Simplified static file serving.
 #STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-USE_S3 = True
+USE_S3 = False
 if os.environ.get('USE_S3') == 'TRUE':
     USE_S3 = True
 elif os.environ.get('USE_S3') == 'FALSE':
@@ -203,3 +203,5 @@ else:
     MEDIA_ROOT = os.path.join(BASE_DIR, 'mediafiles')
 
 #STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
