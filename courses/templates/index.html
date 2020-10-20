@@ -11,9 +11,11 @@
  <div class="greeting">
   <p>Here you can learn a lot about all kinds of subjects. You can check
   available courses
-  <a href="{% url 'courses:course_list' %}">here,</a>
-   or maybe you want to <a href="{% url 'students:student_registration' %}">
-  register new account</a></p>
+  <a href="{% url 'courses:course_list' %}">here.</a>
+  {% if request.user.is_anonymous %}
+    Maybe you want to <a href="{% url 'students:signup' %}">
+    register new account</a>
+  {% endif %}</p>
   
  </div>
 {% endblock content %}

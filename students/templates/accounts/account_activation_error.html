@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Error page{% endblock title %}
+
+{% block content %}
+<div class="greeting">
+  <p>Looks like you entered wrong validation code, please try again,
+   or you can send new code 
+   <a href="{% url 'students:resend_email_link' %}">here</a></p>
+</div>
+{% endblock content %}

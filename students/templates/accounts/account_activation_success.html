@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}Error page{% endblock title %}
+
+{% block content %}
+<div class="greeting">
+  <p>Congratulations, your account has been activated! You may now check
+     all available courses.
+     <a href="{% url 'courses:course_list' %}">check</a>
+     all available courses.</p>
+</div>
+{% endblock content %}

@@ -12,7 +12,7 @@
     <a href="/" class="logo">DukEducation</a>
     <ul class="menu">
       {% if request.user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Sign out</a></li>
+        <li><a href="{% url 'students:logout' %}">Sign out</a></li>
         <!--
         <li><p>
           <div id="auth" >Welcome {{ request.user.get_username }}</div>
@@ -24,7 +24,7 @@
           Manage courses</a></li>
         {% endif %}
       {% else %}
-        <li><a href="{% url 'login' %}">Sign in</a></li>
+        <li><a href="{% url 'students:login' %}">Sign in</a></li>
       {% endif %}
     </ul>
     <div id="auth">

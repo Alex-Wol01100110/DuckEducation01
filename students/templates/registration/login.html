@@ -11,12 +11,16 @@
       <p>Please, use the following form to log-in:</p>
     {% endif %}
     <div class="login-form">
-      <form action="{% url 'login' %}" method="post">
+      <form action="{% url 'students:login' %}" method="post">
         {{ form.as_p }}
         {% csrf_token %}
         <input type="hidden" name="next" value="{{ next }}" />
         <p><input type="submit" value="Log-in"></p>
       </form>
+      <p><a href="{% url 'students:password_reset' %}">
+           Forgotten your password</a></p>
+      <p><a href="{% url 'students:resend_email_link' %}">
+           Activate your account</a></p>
     </div>
   </div>
 {% endblock content %}

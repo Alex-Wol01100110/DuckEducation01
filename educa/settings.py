@@ -132,9 +132,8 @@ USE_TZ = True
 
 from django.urls import reverse_lazy
 LOGIN_REDIRECT_URL = reverse_lazy('students:student_course_list')
-
-# Base URL to serve uploaded media files and
-# local path where the files are located
+LOGIN_URL = 'students:login'
+LOGOUT_URL = 'students:logout'
 
 CACHES = {
     'default': {

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Reactivate your account{% endblock title %}
+
+{% block content %}
+  <div class="module">
+    <h2>Reactivate</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Resend</button>
+    </form>
+  </div>
+{% endblock content %}
